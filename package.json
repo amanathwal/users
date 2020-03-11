@@ -1,0 +1,29 @@
+{
+  "name": "node-users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node dist/index.js",
+    "build": "babel src --out-dir dist",
+    "restart": "rimraf dist && npm run build && npm run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amanathwal/users.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amanathwal/users/issues"
+  },
+  "homepage": "https://github.com/amanathwal/users#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/cli": "^6.26.0"
+  }
+}
