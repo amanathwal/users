@@ -40,11 +40,9 @@ const data = [{
 app.post('/user', (req, res) => {
     const pathToUsers = path.join(__dirname, './users.json');
     const rawdata = fs.readFileSync(pathToUsers);
-    debugger;
 
     let users = JSON.parse(rawdata);
     let lastId = users[users.length - 1].id;
-    debugger;
     console.log(Number.parseInt(lastId));
 
     users = [...users, { id: lastId + 1, ...req.body }];
@@ -56,6 +54,17 @@ app.post('/user', (req, res) => {
 app.get('/users', (req, res) => {
     const rawdata = fs.readFileSync(path.join(__dirname, './users.json'));
     res.send(JSON.parse(rawdata));
+});
+
+app.delete('/users/:id', (req, res) => {
+    const pathToUsers = path.join(__dirname, './users.json');
+    const rawdata = fs.readFileSync(pathToUsers);
+    const userId = req.params.id;
+
+    let users = JSON.parse(rawdata);
+    users = users.filter(({ id }) => userId !== id)
+    fs.writeFileSync(pathToUsers, JSON.stringify(users));
+    res.send({ status: 200 });
 });
 
 
